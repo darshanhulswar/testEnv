@@ -19,5 +19,21 @@ pipeline {
                 '''
             }
         }
+
+        stage("build and tag") {
+            steps {
+                sh '''
+                    docker build -t envtest:1 .
+                '''
+            }
+        }
+
+         stage("run") {
+            steps {
+                sh '''
+                    docker run -it -d --name envtest -p 9002:8501 envtest:1
+                '''
+            }
+        }
     }
 }
