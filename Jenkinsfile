@@ -9,6 +9,11 @@ pipeline {
     }
 
     stages {
+        stage('git checkout') {
+            steps {
+                git url: 'https://github.com/darshanhulswar/testEnv.git', branch: 'main'
+            }
+        }
         stage('Print Env') {
             steps {
                 sh '''
